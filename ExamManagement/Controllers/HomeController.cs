@@ -13,6 +13,8 @@ namespace ExamManagement.Controllers
         public ActionResult Index()
         {
             ExamXMLModel a=ExamHelper.AllQuestionsGetter();
+            List<Item> ab =ExamHelper.Last5QuestionsGetter();
+
             return View();
         }
     }
