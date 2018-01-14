@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ExamManagement.Helper;
+using ExamManagement.Models;
 
 namespace ExamManagement.Controllers
 {
@@ -10,20 +12,7 @@ namespace ExamManagement.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            ExamXMLModel a=ExamHelper.AllQuestionsGetter();
             return View();
         }
     }
