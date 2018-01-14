@@ -12,10 +12,12 @@ namespace ExamManagement.Controllers
     {
         public ActionResult Index()
         {
+            //This code will bring the datas from wired.com
             ExamXMLModel a=ExamHelper.AllQuestionsGetter();
             List<Item> ab =ExamHelper.Last5QuestionsGetter();
 
             return View();
+            
         }
     }
 }
