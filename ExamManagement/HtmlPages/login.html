@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            /*background-color: #3b5998;*/
+            background-color: #2471A3;
+            background: url(into_the_mist.jpg);
+            background-size: cover;
+            /*background-attachment:scroll;*/
+        }
+
+        #panel {
+            border: 3px solid #f1f1f1;
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(241,241,241,0.4);
+            margin-top: 240px;
+            box-shadow: 0 0 30px 0 white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #panelbaslik {
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: #F4F6F7;
+            margin-bottom: 10px;
+        }
+
+        #k_Adi, #sifre {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px 0 white;
+        }
+
+        button {
+            background-color: #4267b2;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: 1px solid #29487d;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 30%;
+            float: right;
+            box-shadow: 0 0 10px 0 white;
+            font-size: 15px;
+        }
+
+            button:hover {
+                background-color: #3b5998;
+            }
+    </style>
+
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <section id="panel">
+        <div id="panelbaslik">KULLANICI GİRİŞ</div>
+        <input type="text" name="isim" placeholder="Kullanıcı Adı" id="k_Adi" required autofocus/>
+        <input type="password" name="sifre" placeholder="Şifre" id="sifre" required />
+        <button id="giris"><b>Giriş Yap</b></button>             
+        <span class="uyari"></span>
+    </section>
+
+    <script>
+        if ($.cookie("login")) {
+            window.location.href = "index.html";
+        }
+        $('#giris').bind('click', function () {
+            var kullanicilar = JSON.parse($.cookie("kullanicilar") || "[]");
+            var kullaniciVar = 0;
+            if ($('#k_Adi').val() === "" || $('#sifre').val() === "") {
+                $('.uyari').text("İsim ve Şifre Alanları Boş Bırakılamaz!").fadeIn();
+                return;
+            }
+            for (var i = 0; i < kullanicilar.length; i++) {
+                var K = kullanicilar[i];
+
+
+                if (K.Adi == $('#isim').val() && K.Sifre == $('#sifre').val() && K.AktifMi) {
+                    if ($('#hatirla').prop('checked')) {
+                        $.cookie('login', $('#isim').val(), { expires: 2 })
+                    } else {
+                        $.cookie('login', $('#isim').val())
+                    }
+                    window.location.href = "/login.html";
+                } else if (K.Adi == $('#isim').val() && K.Sifre == $('#sifre').val() && !K.AktifMi) {
+                    $('.uyari').text('Kullanıcı Aktif Değil');
+                    kullaniciVar = 1;
+                }
+                break;
+            }
+            if (kullaniciVar === 0) {
+                $('.uyari').text('Böyle bir kullanıcı yok!');
+
+            }
+
+        })
+        function tabloyaKullancilariEkle(adi, sifre, aktifMi) {
+            var tr = $('<tr></tr>');
+            var adiTd = $('<td></td>').text(adi);
+            adiTd.appendTo(tr);
+            var sifreTd = $('<td></td>').text(sifre);
+            sifreTd.appendTo(tr);
+            var aktifMiTd = $('<td></td>').text(aktifMi);
+            aktifMiTd.appendTo(tr);
+
+            $('#kullanicilar tbody').append(tr);
+        }
+
+        $('#k_kullanicilar').bind('click', function () {
+            var kisiler = {
+                Adi: $('#isim').val().trim(),
+                Sifre: $('#sifre').val().trim(),
+                AktifMi: $('#aktifMi').prop('checked')
+            };
+            //var isim = $('#isim').val();
+            //var sifre = $('#sifre').val();
+
+            if ($.cookie("kullanicilar") !== undefined) {
+                $('#liste').show()
+                var kullanicilar = JSON.parse($.cookie("kullanicilar"));
+                for (var i = 0; i < kullanicilar.length; i++) {
+                    tabloyaKullancilariEkle(kullanicilar[i].Adi, kullanicilar[i].Sifre, kullanicilar[i].AktifMi);
+
+                }
+            } else {
+                $('.uyari').text("Kayıtlı kullanıcı yok!");
+            }
+        })
+
+    </script>
+
+
+</body>
+</html>

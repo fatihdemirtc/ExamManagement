@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <style>
+        body {
+            height: 100%;
+            background: #222222;
+            font-family: 'Lato', sans-serif;
+        }
+
+        #site {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .question {
+            width: 45%;
+            padding: 20px;
+            height: 100%;
+            /*text-align: center;*/
+            display: inline-block;
+        }
+
+        #questionMake {
+            width: 100%;
+            padding: 20px;
+            height: 100%;
+        }
+
+
+        #infoTitle h3 {
+            color: whitesmoke;
+        }
+
+        #infoDescription {
+            border: 2px solid #AAAAAA;
+            display: block;
+            overflow: hidden;
+            margin: 10px 0 10px 0;
+            color: aliceblue;
+            font-size: 15px;
+            padding: 5px;
+            width:100%;
+        }
+
+        .opt {
+            width: 100%;
+            padding: 10px 0 10px 0;
+            margin: 5px 0 5px 0;
+            text-align: left;
+        }
+
+        p, h1 {
+            color: aliceblue;
+        }
+
+        #button {
+            text-align: center;
+            width: 100%;
+        }
+
+        #finishExam {
+            padding: 10px 0 10px 0;
+            width: 40%;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 0 10px 0;
+        }
+
+        .quest {
+            width: 45%;
+            display: inline-block;
+            margin-bottom: 40px;
+            color: aliceblue;
+        }
+        #qstn_1 ,#qstn_3{
+            float:right;
+        }
+
+        /*.check{
+            border-radius:100%;
+            width:20px;
+            display:inline-block;
+            float:left;
+            cursor:pointer;
+        }*/
+        ul li label {
+            position: relative;
+            font-weight: 300;
+            cursor: pointer;
+            font-size: 1.35em;
+            margin-left: 40px;
+            bottom: 0;
+            z-index: 9;
+            
+            /*-webkit-transition: all 0.25s linear;*/
+        }
+
+        ul li {
+            /*color: #AAAAAA;*/
+            display: block;
+            position: relative;
+            float: left;
+            width: 100%;
+            /*height: 40px;*/
+            min-height:40px;
+            margin: 4px;
+            border: 2px solid #333;
+            padding-top:10px;
+        }
+
+            ul li .check {
+                display: inline-block;
+                position: absolute;
+                border: 5px solid #AAAAAA;
+                border-radius: 100%;
+                height: 20px;
+                width: 20px;
+                top: 0;
+                left: 0;
+                z-index: 5;
+                transition: border .25s linear;
+                -webkit-transition: border .25s linear;
+                margin: 8px 0 0 5px;
+                cursor:pointer;
+            }
+
+            ul li:hover .check {
+                border: 5px solid #FFFFFF;
+            }
+
+            ul li .check::before {
+                display: block;
+                position: absolute;
+                content: '';
+                border-radius: 100%;
+                height: 15px;
+                width: 15px;
+                top: 0px;
+                left: 0px;
+                margin: auto;
+                transition: background 0.25s linear;
+                -webkit-transition: background 0.25s linear;
+            }
+
+        input[type=radio]:checked ~ .check {
+            border: 5px solid #46d9f5;
+        }
+
+            /*input[type=radio]:checked ~ .check::before {
+                background: #0DFF92;
+            }*/
+
+        input[type=radio]:checked ~ label {
+            color: #46d9f5;
+        }
+
+        .check .inside {
+            text-align: center;
+            line-height: 20px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul li input[type=radio] {
+            position: absolute;
+            visibility: hidden;
+        }
+        
+        h3{
+            display:inline;
+            color:whitesmoke;
+        }
+        ul{
+            padding:unset;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="site">
+
+        <h1 id="infoTitle">This is Our First Exam</h1>
+
+        <div id="infoDescription">
+            <p id="description"> Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel. Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel</p>
+        </div>
+
+        <div id="sorular">
+            <div class="quest" id="qstn_0">
+                <span>1)</span>
+                <h3>--- SORU METNİ ----  </h3>
+                <ul>
+                    <li>
+                        <input value="0" type="radio" name="question_0"><label>Birinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">A</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="1" type="radio" name="question_0"><label>İkinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">B</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="2" type="radio" name="question_0"><label>Üçüncü Seçenek </label>
+                        <div class="check">
+                            <div class="inside">C</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="3" type="radio" name="question_0"><label>Dördüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">D</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="quest" id="qstn_1">
+                <span>2)</span>
+                <h3>--- SORU METNİ ----  </h3>
+                <ul>
+                    <li>
+                        <input value="0" type="radio" name="question_0"><label>Birinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">A</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="1" type="radio" name="question_0"><label>İkinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">B</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="2" type="radio" name="question_0"><label>Üçüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">C</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="3" type="radio" name="question_0"><label>Dördüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">D</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="quest" id="qstn_2">
+                <span>3)</span>
+                <h3>--- SORU METNİ ----  </h3>
+                <ul>
+                    <li>
+                        <input value="0" type="radio" name="question_0"><label>Birinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">A</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="1" type="radio" name="question_0"><label>İkinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">B</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="2" type="radio" name="question_0"><label>Üçüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">C</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="3" type="radio" name="question_0"><label>Dördüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">D</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="quest" id="qstn_3">
+
+                <span>4)</span><h3> --- SORU METNİ ----  </h3>
+
+                <ul>
+                    <li>
+                        <input value="0" type="radio" name="question_0"><label>Birinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">A</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="1" type="radio" name="question_0"><label>İkinci Seçenek</label>
+                        <div class="check">
+                            <div class="inside">B</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="2" type="radio" name="question_0"><label>Üçüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">C</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input value="3" type="radio" name="question_0"><label>Dördüncü Seçenek</label>
+                        <div class="check">
+                            <div class="inside">D</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <script>
+            $('label, .check').bind('click', function () {
+
+                var input = $(this).siblings('input')[0];
+                input.checked = input.checked == true ? false : true;
+                
+                var kacinciSoru = parseInt($(input).attr("name").split('_')[1]);
+                var kacinciSecenek = parseInt($(input).val());
+            });
+
+        </script>
+        <!--<div>
+        Questions Old
+
+
+        <div class="question question1">
+            <p id="q_desc">Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel</p>
+            <input type="radio" name="option1" value="" />
+
+        </div>
+
+        <div class="question question2">
+            <p id="q_desc">Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel</p>
+            <input type="button" class="opt opt-1" name="option1" placeholder="A)" value="A) Cevap 1" />
+            <input type="button" class="opt opt-2" name="option2" placeholder="B)" value="B) Cevap 2" />
+            <input type="button" class="opt opt-3" name="option3" placeholder="C)" value="C) Cevap 3" />
+            <input type="button" class="opt opt-4" name="option4" placeholder="D)" value="D) Cevap 4" />
+        </div>
+
+        <div class="question question3">
+            <p id="q_desc">Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel</p>
+            <input type="button" class="opt opt-1" name="option1" placeholder="A)" value="A) Cevap 1" />
+            <input type="button" class="opt opt-2" name="option2" placeholder="B)" value="B) Cevap 2" />
+            <input type="button" class="opt opt-3" name="option3" placeholder="C)" value="C) Cevap 3" />
+            <input type="button" class="opt opt-4" name="option4" placeholder="D)" value="D) Cevap 4" />
+        </div>
+
+        <div class="question question4">
+            <p id="q_desc">Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel.Consectetur adipiscing elit fusce vel</p>
+            <input type="button" class="opt opt-1" name="option1" placeholder="A)" value="A) Cevap 1" />
+            <input type="button" class="opt opt-2" name="option2" placeholder="B)" value="B) Cevap 2" />
+            <input type="button" class="opt opt-3" name="option3" placeholder="C)" value="C) Cevap 3" />
+            <input type="button" class="opt opt-4" name="option4" placeholder="D)" value="D) Cevap 4" />
+        </div>
+
+
+    </div>-->
+        <div id="button">
+            <button id="finishExam">SINAV TAMAMLA</button>
+        </div>
+    </div>
+</body>
+</html>
